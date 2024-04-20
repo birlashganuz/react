@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-1 17.04.2024:vazifa</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <script type="text/babel">
+        function App() {
+            const [count, setCount] = React.useState(0)
+            const [text, setText] = React.useState('')
+            const [view, setView] = React.useState(false)
+            const [row, setRow] = React.useState('')
+            const holder = "Ismingizni kiriting"
+
+            const delCount = () => {
+                if (count > 0) setCount(count - 1)
+            }
+
+            return (
+                <div className="container">
+                    <div className="box">
+                        <button onClick={delCount}>-</button>
+                        <h1>{count}</h1>
+                        <button onClick={() => setCount(count + 1)}>+</button>
+                    </div>
+                    <div className="item">
+                        <input type="text" placeholder={holder} value={text} onChange={(e) => setText(e.target.value)} />
+                        <h2> {text.length < 5 ? 'Belgilar soni 5 tadan kam' : 'Belgilar soni 5 tadan ko\'p'}</h2>
+                    </div>
+
+                    <div className="box">
+                        <input type={view ? 'password' : 'text'} />
+                        <button onClick={() => setView(!view)}>{view ? "Ko'rsat" : "Berkit"}</button>
+                    </div>
+
+                    <div className="item">
+                        <select value={row} onChange={(e) => setRow(e.target.value)}>
+                            <option>1-qator</option>
+                            <option>2-qator</option>
+                            <option>3-qator</option>
+                        </select>
+                        <h2>{row}</h2>
+                    </div>
+                </div>
+            )
+
+        }
+
+        const app = document.getElementById('root')
+        const root = ReactDOM.createRoot(app)
+        root.render(<App />)
+
+    </script>
+</body>
+
+</html>
